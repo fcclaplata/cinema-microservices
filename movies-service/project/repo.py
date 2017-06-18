@@ -8,15 +8,17 @@ class MoiveRepository():
         self.db = db
 
     def movies(self):
-        return {'data': self.db.movies()}
+        return self.db.movies()
 
-    def movie_by_id(self, id):
-        return {'data': self.movies().find(lambda movie: movie.id==id)}
+    def movie(self, id):
+        for movie in self.movies():
+            if movie['id'] == str(id):
+                return movie
+        raise NotImplementedError
 
     def premieres(self):
-        return {
-            'data': [movie for movie in self.movies() if movie['releaseDate'] > (date.today() - timedelta(60))]
-        }
+        print(self.movies())
+        return [movie for movie in self.movies() if date.fromtimestamp(movie['releaseDate']) > (date.today() - timedelta(60))]
 
 
 movie_repo = MoiveRepository(db)

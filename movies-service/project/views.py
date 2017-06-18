@@ -2,12 +2,12 @@ from project.repo import movie_repo
 
 
 def movies():
-    return movie_repo.movies()
+    return {'data': movie_repo.movies()}
 
 
 def premieres():
-    return movie_repo.premieres()
+    return {'data': movie_repo.premieres()}
 
 
-def movie(id: int):
-    return movie_repo.movie(id)
+def movie(id: str):
+    return {'data': movie_repo.movie(id)}

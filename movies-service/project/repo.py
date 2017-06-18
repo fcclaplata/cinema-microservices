@@ -1,4 +1,5 @@
 from datetime import timedelta, date
+from bson.objectid import ObjectId
 from project.db import db
 
 
@@ -8,13 +9,10 @@ class MoiveRepository():
         self.db = db
 
     def movies(self):
-        return self.db.movies()
+        return [movie for movie in self.db.movies().find()]
 
     def movie(self, id):
-        for movie in self.movies():
-            if movie['id'] == str(id):
-                return movie
-        raise NotImplementedError
+        return self.db.movies().find({'_id': ObjectId(id)})
 
     def premieres(self):
         print(self.movies())

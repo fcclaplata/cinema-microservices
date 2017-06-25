@@ -1,0 +1,14 @@
+version: '2'
+services:
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes: 
+      - datavolume:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongo
+      - MONGO_INITDB_ROOT_PASSWORD=mongo
+volumes:
+  datavolume:

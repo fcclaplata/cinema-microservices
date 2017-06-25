@@ -12,7 +12,7 @@ class MoiveRepository():
         return [movie for movie in self.db.movies().find()]
 
     def movie(self, id):
-        return self.db.movies().find({'_id': ObjectId(id)})
+        return self.db.movies().find_one({"_id": ObjectId(id)})
 
     def premieres(self):
         print(self.movies())

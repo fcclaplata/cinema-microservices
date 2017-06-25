@@ -1,13 +1,14 @@
 from project.repo import movie_repo
+from bson.json_util import dumps
 
 
 def movies():
-    return {'data': movie_repo.movies()}
+    return {'data': dumps(movie_repo.movies())}
 
 
 def premieres():
-    return {'data': movie_repo.premieres()}
+    return {'data': dumps(movie_repo.premieres())}
 
 
 def movie(id: str):
-    return {'data': movie_repo.movie(id)}
+    return {'data': dumps(movie_repo.movie(id))}

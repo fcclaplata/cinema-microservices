@@ -1,18 +1,14 @@
 from pymongo import MongoClient
 from os import environ
 
-DBUSER = environ.get('DBUSER')
-DBPWD = environ.get('DBPWD')
-DBHOST = environ.get('DBHOST')
-DBPORT = environ.get('DBPORT')
-DBNAME = environ.get('DBNAME')
+DBURL = environ.get('DBURL')
 
 
 class Database():
 
     def __init__(self):
-        client = MongoClient(f"mongodb://{DBUSER}:{DBPWD}@{DBHOST}:{DBPORT}")
-        db = client[DBNAME]
+        client = MongoClient(DBURL)
+        db = client
         self.collection = db.movies
 
     def movies(self):

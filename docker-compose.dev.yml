@@ -9,7 +9,8 @@ services:
     links:
       - "db"
     volumes:
-      - ./movies-service:/src
+      - ./movies-service:/code
+    working_dir: /code/src
     command: "apistar run --host 0.0.0.0"
     environment:
       - DBUSER=mongo

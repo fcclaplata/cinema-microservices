@@ -10,3 +10,4 @@ routes = [
     Include('/docs', docs_routes),
     Include('/static', static_routes)
 ]
+document into the cinema document.

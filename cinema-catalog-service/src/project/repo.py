@@ -14,18 +14,48 @@ class MoiveRepository():
     def cinema(self, id):
         return self.db.cinemas.find_one(id)
 
-    def movies(self, cinema, movie):
-        return self.
+    def schedules(self, city, movie):
+        match = {
+            '$match': {
+                'city_id': city,
+                'cinemaRooms.schedules.movie_id': movie
+            }
+        }
+        project = {
+            '$project': {
+                'name': 1,
+                'cinemaRooms.schedules.time': 1,
+                'cinemaRooms.name': 1,
+                'cinemaRooms.format': 1
+            }
+        }
 
-    def movies(self):
-        return [movie for movie in self.db.movies.find()]
+        unwind = [{'$unwind': '$cinemaRooms'}, {
+            '$unwind': '$cinemaRooms.schedules'}]
 
-    def movie(self, id):
-        return self.db.movies.find_one({"_id": ObjectId(id)})
+        group = [
+            {
+                '$group': {
+                    '_id': {
+                        'name': '$name',
+                        'room': '$cinemaRooms.name'
+                    },
+                    'schedules': {'$addToSet': '$cinemaRooms.schedules.time'}
+                }
+            },
+            {
+                '$group': {
+                    '_id': '$_id.name',
+                    'schedules': {'$addToSet': {
+                        'room': '$_id.room',
+                        'schedules': '$schedules'
+                    }
+                    }
+                }
+            }
+        ]
 
-    def premieres(self):
-        print(self.movies())
-        return [movie for movie in self.movies if date.fromtimestamp(movie['releaseDate']) > (date.today() - timedelta(60))]
-
+        pipeline = [match, project, *unwind, *group]
+        return list(self.db.cinemas.aggregate(pipeline))
 
 movie_repo = MoiveRepository(db)

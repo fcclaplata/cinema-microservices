@@ -11,10 +11,10 @@ class MoiveRepository():
     def cinemas(self, filter={}):
         return list(self.db.cinemas.find(filter))
 
-    def cinema(self, id):
+    def cinema(self, id: str):
         return self.db.cinemas.find_one(id)
 
-    def schedules(self, city, movie):
+    def schedules(self, city: str, movie: str):
         match = {
             '$match': {
                 'city_id': city,

@@ -11,3 +11,16 @@ services:
     environment:
       - DBURL=mongodb://fcclp_cinema:T9wVVSfFpehnnIxo@cinema-shard-00-00-v2tc9.mongodb.net:27017,cinema-shard-00-01-v2tc9.mongodb.net:27017,cinema-shard-00-02-v2tc9.mongodb.net:27017/Cinemas?ssl=true&replicaSet=Cinema-shard-0&authSource=admin
       - DBNAME=Cinemas
+  api_booking:
+    build:
+      context: ./booking-service
+      dockerfile: Dockerfile
+    ports:
+      - 8088:8080
+    volumes:
+      - ./booking-service/src:/code/src
+    environment:
+      - DBURL=mongodb://fcclp_cinema:T9wVVSfFpehnnIxo@cinema-shard-00-00-v2tc9.mongodb.net:27017,cinema-shard-00-01-v2tc9.mongodb.net:27017,cinema-shard-00-02-v2tc9.mongodb.net:27017/Cinemas?ssl=true&replicaSet=Cinema-shard-0&authSource=admin
+      - DBNAME=Booking
+      - PAYMENTSERVICE=http://fakepymentservice # TODO: Payment service endpoint
+      - NOTIFICATIONSERVICE=http://fakenotificationservice # TODO: Notification service endpoint

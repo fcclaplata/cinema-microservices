@@ -9,7 +9,7 @@ class MoiveRepository():
         self.db = db
 
     def movies(self, criteria={}):
-        return [movie for movie in self.db.movies().find(criteria)]
+        return list(self.db.movies().find(criteria))
 
     def movie(self, id):
         return self.db.movies().find_one({"_id": ObjectId(id)})

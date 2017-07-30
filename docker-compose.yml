@@ -9,7 +9,8 @@ services:
     volumes:
       - ./movies-service/src:/code/src
     environment:
-      - DBURL=mongodb://fcclp_cinema:T9wVVSfFpehnnIxo@cinema-shard-00-00-v2tc9.mongodb.net:27017,cinema-shard-00-01-v2tc9.mongodb.net:27017,cinema-shard-00-02-v2tc9.mongodb.net:27017/Cinemas?ssl=true&replicaSet=Cinema-shard-0&authSource=admin
+      - DBURL=mongodb://fcclaplata:tg1IQ0HZ9H6G9wTt@fcclp-cinemas-shard-00-00-jhxfm.mongodb.net:27017,fcclp-cinemas-shard-00-01-jhxfm.mongodb.net:27017,fcclp-cinemas-shard-00-02-jhxfm.mongodb.net:27017/Cinemas?ssl=true&replicaSet=fcclp-cinemas-shard-0&authSource=admin
+      # - DBURL=mongodb://fcclp_cinema:T9wVVSfFpehnnIxo@cinema-shard-00-00-v2tc9.mongodb.net:27017,cinema-shard-00-01-v2tc9.mongodb.net:27017,cinema-shard-00-02-v2tc9.mongodb.net:27017/Cinemas?ssl=true&replicaSet=Cinema-shard-0&authSource=admin
       - DBNAME=Cinemas
 
   catalog:
@@ -21,5 +22,6 @@ services:
     volumes:
       - ./cinema-catalog-service/src:/code/src
     environment:
-      - DBURL=mongodb://fcclp_cinema:T9wVVSfFpehnnIxo@cinema-shard-00-00-v2tc9.mongodb.net:27017,cinema-shard-00-01-v2tc9.mongodb.net:27017,cinema-shard-00-02-v2tc9.mongodb.net:27017/Cinemas?ssl=true&replicaSet=Cinema-shard-0&authSource=admin
+      - DBURL=mongodb://fcclaplata:tg1IQ0HZ9H6G9wTt@fcclp-cinemas-shard-00-00-jhxfm.mongodb.net:27017,fcclp-cinemas-shard-00-01-jhxfm.mongodb.net:27017,fcclp-cinemas-shard-00-02-jhxfm.mongodb.net:27017/Cinemas?ssl=true&replicaSet=fcclp-cinemas-shard-0&authSource=admin
+      # - DBURL=mongodb://fcclp_cinema:T9wVVSfFpehnnIxo@cinema-shard-00-00-v2tc9.mongodb.net:27017,cinema-shard-00-01-v2tc9.mongodb.net:27017,cinema-shard-00-02-v2tc9.mongodb.net:27017/Cinemas?ssl=true&replicaSet=Cinema-shard-0&authSource=admin
       - DBNAME=Cinemas

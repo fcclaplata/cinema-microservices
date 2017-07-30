@@ -16,7 +16,6 @@ class Database():
     def __init__(self):
         # client = MongoClient(f"mongodb://{DBUSER}:{DBPWD}@{DBHOST}:{DBPORT}")
         client = MongoClient(DBURL)
-        print(DBNAME)
         self.db = client[DBNAME]
 
     @property

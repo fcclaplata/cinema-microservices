@@ -5,9 +5,8 @@ from project import views
 
 routes = [
     Route('/', 'GET', views.cinemas),
-    Route('/{cinema_id}', 'GET', view.cinema),
-    Route('/{cinema_id}/{movie_id}', 'GET', views.schedules),
+    Route('/{cinema_id}', 'GET', views.cinema),
+    Route('/{city_id}/{movie_id}', 'GET', views.schedules),
     Include('/docs', docs_routes),
     Include('/static', static_routes)
 ]
-document into the cinema document.

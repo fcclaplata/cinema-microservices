@@ -8,6 +8,10 @@ ADD requirements.txt /code
 
 RUN pip install -r requirements.txt
 
-ADD . /code
+WORKDIR /code/src
+
+ADD ./src .
 
 EXPOSE 8080
+
+CMD ["apistar", "run", "--host", "0.0.0.0", "--port", "8080"]
